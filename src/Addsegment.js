@@ -39,7 +39,7 @@ const SegmentApp = () => {
 
         // Here, you can send segmentData to the server using an API call or any other method.
         console.log("Segment Data:", segmentData);
-
+        setAvailableOptions(options);
         handlePaneClose();
     };
 
@@ -106,57 +106,6 @@ const SegmentApp = () => {
                         />
                     </div>
                     <p className="mt-2">To save your segment, you need to add the schemas to build the query.</p>
-                    <p className="mt-2">Selected Schemas:</p>
-                    <div className="border border-primary p-3 mt-4">
-                        {selectedSchemas.map((schema, index) => (
-                            <div key={index} className="selected-schema p-2 d-flex justify-content-between">
-                                <Select
-                                    value={options.find((option) => option.value === Object.keys(schema)[0])}
-                                    options={availableOptions}
-                                    className="col-md-10"
-                                    onChange={(newOption) => handleChangeSchema(schema, newOption)}
-                                />
-                                <p className=" bg-light fs-5 fw-bold px-2 py-0 float-end"><i class='bx bx-minus' onClick={() => handleRemoveSchema(schema)}></i></p>
-                            </div>
-                        ))}
-                    </div>
-                    <div>
-                        <label>Add schema to segment:</label>
-                        <Select
-                            value={selectedOption}
-                            options={availableOptions}
-                            onChange={(option) => setSelectedOption(option)}
-                            className="mt-2"
-                        />
-                        <p className="text-success mt-2" onClick={handleAddSchema}>
-                            + Add new schema
-                        </p>
-                    </div>
-                    <button className="btn btn-primary mt-2" onClick={handleSaveSegmentData}>
-                        Save
-                    </button>
-                </SlidingPane>
-            </MediaQuery>
-            <MediaQuery maxWidth={767}>
-                <SlidingPane
-                    isOpen={isPaneOpen}
-                    title="Saving the Segment"
-                    onRequestClose={handlePaneClose}
-                    width="90%" // Set the desired width here, like "300px" or "50%"
-                >
-                    <div>
-                        <label>Enter the name of the Segment</label>
-                        <br />
-                        <input
-                            type="text"
-                            value={segmentName}
-                            onChange={(e) => setSegmentName(e.target.value)}
-                            className="form-control mt-2"
-                            placeholder="Name of the segment"
-                        />
-                    </div>
-                    <p className="mt-2">To save your segment, you need to add the schemas to build the query.</p>
-                    <p className="mt-2">Selected Schemas:</p>
 
                     <div className="border border-primary p-3 mt-4">
                         {selectedSchemas.map((schema, index) => (
@@ -179,13 +128,72 @@ const SegmentApp = () => {
                             onChange={(option) => setSelectedOption(option)}
                             className="mt-2"
                         />
+                        <a className="text-success mt-2" onClick={handleAddSchema}>
+                            + Add new schema
+                        </a>
+                    </div>
+                    <div className="fixed-bottom bg-light p-3">
+                        <button className="btn btn-primary mt-2" onClick={handleSaveSegmentData}>
+                            Save Segment
+                        </button>
+                        <button className="btn border-light text-danger   mt-2" onClick={handlePaneClose}>
+                            Cancel
+                        </button>
+                    </div>
+                </SlidingPane>
+            </MediaQuery>
+            <MediaQuery maxWidth={767}>
+                <SlidingPane
+                    isOpen={isPaneOpen}
+                    title="Saving the Segment"
+                    onRequestClose={handlePaneClose}
+                    width="90%" // Set the desired width here, like "300px" or "50%"
+                >
+                    <div>
+                        <label>Enter the name of the Segment</label>
+                        <br />
+                        <input
+                            type="text"
+                            value={segmentName}
+                            onChange={(e) => setSegmentName(e.target.value)}
+                            className="form-control mt-2"
+                            placeholder="Name of the segment"
+                        />
+                    </div>
+                    <p className="mt-2">To save your segment, you need to add the schemas to build the query.</p>
+                    <div className="border border-primary p-3 mt-4">
+                        {selectedSchemas.map((schema, index) => (
+                            <div key={index} className="selected-schema p-2 d-flex justify-content-between">
+                                <Select
+                                    value={options.find((option) => option.value === Object.keys(schema)[0])}
+                                    options={availableOptions}
+                                    className="col-md-10"
+                                    onChange={(newOption) => handleChangeSchema(schema, newOption)}
+                                />
+                                <p className=" bg-light fs-5 fw-bold px-2 py-0 float-end"><i class='bx bx-minus' onClick={() => handleRemoveSchema(schema)}></i></p>
+                            </div>
+                        ))}
+                    </div>
+                    <div>
+                        <label>Add schema to segment:</label>
+                        <Select
+                            value={selectedOption}
+                            options={availableOptions}
+                            onChange={(option) => setSelectedOption(option)}
+                            className="mt-2"
+                        />
                         <p className="text-success mt-2" onClick={handleAddSchema}>
                             + Add new schema
                         </p>
                     </div>
-                    <button className="btn btn-primary mt-2" onClick={handleSaveSegmentData}>
-                        Save
-                    </button>
+                    <div className="fixed-bottom bg-light p-3">
+                        <button className="btn btn-primary mt-2" onClick={handleSaveSegmentData}>
+                            Save Segment
+                        </button>
+                        <button className="btn btn-outline-danger mt-2" onClick={handlePaneClose}>
+                            Cancel
+                        </button>
+                    </div>
                 </SlidingPane>
             </MediaQuery>
         </div>
