@@ -128,7 +128,7 @@ const SegmentApp = () => {
                             onChange={(option) => setSelectedOption(option)}
                             className="mt-2"
                         />
-                        <a className="text-success mt-2" onClick={handleAddSchema}>
+                        <a className="text-success mt-3" onClick={handleAddSchema}>
                             + Add new schema
                         </a>
                     </div>
@@ -182,7 +182,7 @@ const SegmentApp = () => {
                             onChange={(option) => setSelectedOption(option)}
                             className="mt-2"
                         />
-                        <p className="text-success mt-2" onClick={handleAddSchema}>
+                        <p className="text-success mt-3" onClick={handleAddSchema}>
                             + Add new schema
                         </p>
                     </div>
